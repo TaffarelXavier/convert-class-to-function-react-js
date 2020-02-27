@@ -9,33 +9,62 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+	
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', function() {
+
+	console.log("Extensão iniciada com sucesso!")
+
+
+	let disposable = vscode.commands.registerCommand('extension.converterClasseEmFuncao', function() {
+		
 		const { activeTextEditor } = vscode.window;
 
 		if (activeTextEditor) {
+			
 			const { document } = activeTextEditor;
 
 			for (let i = 0; i <= document.lineCount; i++) {
+
 				const firstLine = document.lineAt(i);
 
 				let data = firstLine.text.match(/class/);
 
-				if (data) {
-					console.log(firstLine.text);
+				let _render = firstLine.text.match(/render\(\)\s+\{/);
 
-					const edit = new vscode.WorkspaceEdit();
+				const edit = new vscode.WorkspaceEdit();
+
+				console.log(firstLine.text)
+				/*if (data) {
+
+					var className = firstLine.text.match(/class\s+(\w+)/);
 
 					// edit.insert(document.uri, firstLine.range.start, '42\n');
-					edit.replace(document.uri, firstLine.range, 'const App = () => {');
+					edit.replace(document.uri, firstLine.range, `const ${className[1]} = () => {`);
 
-					return vscode.workspace.applyEdit(edit);
+					//edit.replace(document.uri, firstLine.range, `const ${className[1]} = () => {`);
+
 				}
+
+				if (_render) {
+					console.log('francisco');
+
+					var rend = firstLine.text.match(/render\(\)\s+\{/);
+
+					// edit.insert(document.uri, firstLine.range.start, '42\n');
+					edit.replace(document.uri, firstLine.range, `taffarel`);
+
+					//edit.replace(document.uri, firstLine.range, `const ${className[1]} = () => {`);
+
+				}
+*/
+
+
+				return vscode.workspace.applyEdit(edit);
+
 			}
 		}
-
 	});
 
 	context.subscriptions.push(disposable);

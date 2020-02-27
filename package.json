@@ -2,7 +2,7 @@
 	"name": "converter-classe-para-funcao",
 	"displayName": "converter-classe-para-funcao",
 	"description": "Converte uma classe para função",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"publisher": "converter-classe-para-funcao",
 	"author": "Prettier <@prettiercode>",
 	"repository": {
@@ -20,14 +20,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.converterClasseEmFuncao"
 	],
 	"icon": "icon.png",
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
-            "command": "extension.helloWorld",
-			"title": "Hello World"
+            "command": "extension.converterClasseEmFuncao",
+			"title": "Converter Classe..."
 		}]
 	},
 	"scripts": {
