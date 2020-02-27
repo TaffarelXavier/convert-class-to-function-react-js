@@ -25,45 +25,28 @@ function activate(context) {
 			
 			const { document } = activeTextEditor;
 
+			const edit = new vscode.WorkspaceEdit();
+
 			for (let i = 0; i <= document.lineCount; i++) {
 
 				const firstLine = document.lineAt(i);
 
-				let data = firstLine.text.match(/class/);
+				var el = firstLine.text;
 
-				let _render = firstLine.text.match(/render\(\)\s+\{/);
-
-				const edit = new vscode.WorkspaceEdit();
-
-				console.log(firstLine.text)
-				/*if (data) {
-
-					var className = firstLine.text.match(/class\s+(\w+)/);
-
-					// edit.insert(document.uri, firstLine.range.start, '42\n');
-					edit.replace(document.uri, firstLine.range, `const ${className[1]} = () => {`);
-
-					//edit.replace(document.uri, firstLine.range, `const ${className[1]} = () => {`);
-
+				var className = el.match(/class\s+(\w+)/);
+				
+				if (Boolean(className)) {
+					edit.replace(document.uri, firstLine.range, `const ${className[1]} = () => {\n`);
+				} else if (Boolean(el.match(/\s+?render\(\)\s+{/gm))) {
+					edit.replace(document.uri, firstLine.range, "\n");
+				} else {
+					edit.replace(document.uri, firstLine.range, el +"\n");
 				}
-
-				if (_render) {
-					console.log('francisco');
-
-					var rend = firstLine.text.match(/render\(\)\s+\{/);
-
-					// edit.insert(document.uri, firstLine.range.start, '42\n');
-					edit.replace(document.uri, firstLine.range, `taffarel`);
-
-					//edit.replace(document.uri, firstLine.range, `const ${className[1]} = () => {`);
-
-				}
-*/
-
 
 				return vscode.workspace.applyEdit(edit);
-
 			}
+
+			
 		}
 	});
 
