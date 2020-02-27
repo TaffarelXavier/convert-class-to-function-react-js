@@ -5,6 +5,10 @@
 	"version": "0.0.1",
 	"publisher": "converter-classe-para-funcao",
 	"author": "Prettier <@prettiercode>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/TaffarelXavier/convert-class-to-function-react-js.git"
+	},
 	"galleryBanner": {
 	  "color": "#ffe04b",
 	  "theme": "light"
